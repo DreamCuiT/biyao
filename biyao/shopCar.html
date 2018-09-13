@@ -15,7 +15,7 @@
 	<div class="shopCar-main-top">
 		<ul class="shopCar-main-top-ul">
 			<li>
-				<i class="select"></i><span>全选</span>
+				<i class="selectAll"></i><span>全选</span>
 			</li>
 			<li>
 				商品信息
@@ -41,12 +41,11 @@
 				<span>商家：</span>
 				<b>EMP服饰</b>
 			</li>
-			<li>
+			<li class="ul-li-2">
 				<div>
 					<i class="select"></i>
 					<img src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
 				</div>
-			
 				<ul>
 					<li>净色小翻领拉链款短风衣JJK18618</li>
 					<li>颜色：<span>黑色</span></li>
@@ -55,20 +54,42 @@
 			
 				<ul class="shopCar-main-content-right">
 					<li>￥<span>599</span></li>
-					<li><span>-</span><span>1</span><span>+</span></li>
+					<li>
+						<span class="miu"></span><span class="num">1</span><span class="add"></span>
+					</li>
+					<li>￥<span>599</span></li>
+					<li><span></span></li>
+				</ul>
+			</li>
+			<li class="ul-li-2">
+				<div>
+					<i class="select"></i>
+					<img src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
+				</div>
+				<ul>
+					<li>净色小翻领拉链款短风衣JJK18618</li>
+					<li>颜色：<span>黑色</span></li>
+					<li>尺寸：<span>48</span></li>
+				</ul>
+			
+				<ul class="shopCar-main-content-right">
+					<li>￥<span>599</span></li>
+					<li>
+						<span class="miu"></span><span class="num">1</span><span class="add"></span>
+					</li>
 					<li>￥<span>599</span></li>
 					<li><span></span></li>
 				</ul>
 			</li>
 			<li>
 				<div>
-					<i class="select"></i>
+					<i class="selectAll"></i>
 					全选
 					<span>删除</span>
 				</div>
 				<ul>
-					<li>商品总件数<span>1</span> 件</li>
-					<li>商品总价: <i>￥</i><span>599</span></li>
+					<li>商品总件数 <span class="goods-data">1</span> 件</li>
+					<li>商品总价  :<i class="goods-data">￥</i><span class="goods-data">599</span></li>
 				</ul>
 			</li>
 		</ul>
@@ -76,7 +97,7 @@
 	<div class="shopCar-main-goBuy">
 		<ul>
 			<li>继续购物</li>
-			<li>合计：<i>￥</i><span>599</span><span>结算</span></li>
+			<li>合计：<i class="goods-data sum">￥</i><span class="goods-data sum">599</span><span>结算</span></li>
 		</ul>
 	</div>
 	<div class = "public-foot"></div>
@@ -91,6 +112,80 @@
 		$(".rightaside").load("public-html/asideRight.html");
 		$("style").load("css/public.css")
 		$(".publicJs").load("js/public.js")
+
+		//全选按钮
+		let offto = false;
+		$(".selectAll").click(function(){
+			if(offto == false){
+				$(".selectAll,.select").css({
+					"background-position":"-20px -80px"
+				})
+				$(this).css({
+					"background-position":"-20px -80px"
+				})
+				offto = true;
+			}else{
+				$(".selectAll,.select").css({
+					"background-position":"0px -80px"
+				})
+				$(this).css({
+					"background-position":"0px -80px"
+				})
+				offto = false;
+			}
+		})
+		//单选按钮
+		let btn =  document.getElementsByClassName("select");
+		for(let i=0;i<btn.length;i++){
+			btn[i].setAttribute("off","false");
+		}
+		$(".select").click(function(){
+			if($(this).attr("off")=="false"){
+				$(this).css({//false选中按钮
+					"background-position":"-20px -80px"
+				})
+				this.setAttribute("off","true");
+			}else{
+				$(this).css({
+					"background-position":"0px -80px"
+				})
+				this.setAttribute("off","false");
+			}
+			for(let i=0;i<$(".select").length;i++){
+				let off = $(".select")[i][off];
+				if(off=="false"){
+					$(".selectAll").css({
+						"background-position":"-20px -80px"
+					})
+				}else{
+					$(".selectAll").css({
+						"background-position":"0px -80px"
+					})
+				}
+			}
+			// if($(".select").attr("off")=="false"){
+			// 	$(".selectAll").css({
+			// 		"background-position":"-20px -80px"
+			// 	})
+			// }else{
+			// 	$(".selectAll").css({
+			// 		"background-position":"0px -80px"
+			// 	})
+			// }
+		})
+		// $(".select").click(function(){
+		// 	if(offto == false){
+		// 		$(this).css({
+		// 			"background-position":"-20px -80px"
+		// 		})
+		// 		offto = true;
+		// 	}else{
+		// 		$(this).css({
+		// 			"background-position":"0px -80px"
+		// 		})
+		// 		offto = false;
+		// 	}
+		// })
 	})
 </script>
 </html>
