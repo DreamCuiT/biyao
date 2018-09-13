@@ -1,0 +1,214 @@
+li{
+    list-style: none;
+}
+a{
+    text-decoration:none;
+}
+.headChildTop{
+	width: 1200px;
+	margin:0 auto;
+}
+.nav-search>p{
+	display: none;
+}
+.nav-tap{
+	display: none;
+}
+.searchUl{
+	display: none;
+}
+.headerBox{
+	height:127px;
+}
+.nav-child{
+	width:1200px;
+	margin:0 auto;
+}
+.nav-child,.nav-index{
+
+	height:96px;
+	
+	background-color: #F9F9F9;
+}
+.main{
+	width:1200px;
+	margin:0 auto;
+}
+.main-title{
+	padding-top:30px;
+	padding-bottom:10px;
+	border-bottom: 1px solid #d5cdda;
+}
+.main-title>span{
+    color: #523669;
+    font-size:18px;
+    margin-left:10px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align:left;
+}
+/*shopCar-main-top*/
+.shopCar-main-top,.shopCar-main-content,.shopCar-main-goBuy{
+	font-size: 12px;
+    font-weight: 400; 
+    width: 1190px;
+	margin:0 auto;
+}
+.shopCar-main-top-ul{
+	list-style: none;
+	overflow: hidden;	
+}
+.shopCar-main-top-ul>li{
+	float:left;
+	height:37px;
+	width:120px;
+	line-height:37px;
+	text-align:center;
+	color: #523669;
+}
+.select{
+	display: inline-block;
+	vertical-align:middle;
+	margin-left:10px;
+	cursor:pointer;
+	width: 15px;
+    height: 15px;
+    margin-right:10px;
+    background: url(../shopCar-img/commonSprite.png) no-repeat 0 -80px;
+}
+.shopCar-main-top-ul>li:first-child{
+	width:180px;
+	text-align:left;
+}
+.shopCar-main-top-ul>li:nth-child(2){
+	width:600px;
+	font-weight:400;
+	text-align:left;
+}
+.shopCar-main-top-ul>li:last-child{
+	width:auto;
+	margin:0 auto;
+}
+.shopCar-main-top-ul>li>span{
+	color: #523669;
+}
+/*shopCar-main-content*/
+.shopCar-main-content>ul{
+	overflow: hidden;
+}
+.shopCar-main-content>ul>li{
+/*	float:left;*/
+}
+.shopCar-main-content>ul>li:first-child{
+	line-height: 35px;
+    background-color: #EEE;
+}
+.shopCar-main-content>ul>li:nth-child(2){
+    background-color: #fff;
+    overflow: hidden;
+    border-bottom: 1px dotted #ccc;
+}
+.shopCar-main-content>ul>li:first-child>b{
+	color:#333;
+	font-weight: normal;
+}
+.shopCar-main-content>ul>li:nth-child(2)>div{
+	float:left;
+	padding:10px 0;
+	margin-right:30px;
+}
+.shopCar-main-content>ul>li:nth-child(2)>div>img{
+	vertical-align:middle;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2){
+	width:610px;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2)>{
+	float:left;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2)>li{
+	height:20px;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2){
+	float:left;
+	padding:30px 0;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2)>li{
+	color:#999;
+}
+.shopCar-main-content>ul>li:nth-child(2)>ul:nth-child(2)>li:first-child{
+	color:#523669;
+}
+.shopCar-main-content-right{
+	float:left;
+	overflow: hidden;
+}
+.shopCar-main-content-right>li{
+	float:left;
+	width:120px;
+	height:120px;
+	text-align: center;
+	line-height: 120px;
+	color: #f49f26;
+}
+.shopCar-main-content-right>li:nth-child(2){
+
+}
+.shopCar-main-content-right>li:last-child{
+	width:50px;
+	height: 120px;
+}
+.shopCar-main-content-right>li:last-child>span{
+	display: inline-block;
+	width:12px;
+	height:12px;
+	margin:auto;
+	background: url(../shopCar-img/a_delete.png) no-repeat -10px -32px;
+}
+.shopCar-main-content>ul>li:nth-child(3){
+	height:32px;
+	padding:10px 0;
+	background: #fff;
+}
+.shopCar-main-content>ul>li:nth-child(3)>ul{
+	float:right;	
+}
+.shopCar-main-content>ul>li:nth-child(3)>ul>li{
+	display: inline-block;	
+}
+
+
+/*shopCar-main-goBuy*/
+.shopCar-main-goBuy{
+	background: #EEECEF;
+	overflow: hidden;
+    border-top: 1px solid #d5cdda;
+	
+}
+.shopCar-main-goBuy>ul{
+	height:33px;
+	margin:10px 10px 5px 10px;
+}
+.shopCar-main-goBuy>ul>li:first-child{
+	float:left;
+	width: 100px;
+	height:33px;
+	line-height: 33px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    background-color: #724A88;
+}
+.shopCar-main-goBuy>ul>li:last-child>span:nth-child(3){
+	float:right;
+}
+.shopCar-main-goBuy>ul>li:last-child>span:nth-child(3){
+	width: 85px;
+    height: 33px;
+    line-height: 33px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    background: #f49f26;
+}
+

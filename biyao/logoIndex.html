@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>必要 - 买大品牌制造产品</title>
+	<style>
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/logoIndex.css">
+</head>
+<body>
+	<!-- header -->
+<div class = "logoHeader">
+	<div class="logoHead-Top">
+		<div>
+			<a href="index.html"  class="logo"></a>
+			<p class="logo-top-right">
+				欢迎来到必要，请
+				<span>登录</span>|
+				<span><a href="regIndex.html">注册</a></span>
+			</p>
+		</div>
+	</div>
+</div>	
+	<!-- form -->
+<div class="form-box">
+	<h4 class="form-top">
+		<b></b>用户登录
+		<a href="#" class="sms-in">短信登录</a>
+		<a href="#" class="pw-in">密码登录</a>
+	</h4>
+	<ul class="user-in">
+		<li><input id="username" type="text" name="" placeholder="请输入手机号"><i>请输入手机号</i></li>
+		<li><input id="userpw" type="text" name="" placeholder="请输入登录密码"><i>请输入登录密码</i></li>
+		<li class="user-auto"><span class="cookie"><b></b>下次自动登录</span><a href="#">忘记密码</a></li>
+		<li style="height:12px"></li>
+		<li class="loading">登录</li>
+	</ul>
+	<ul class="user-in user-in-sms">
+		<li><input type="text" name="" placeholder="请输入手机号"><i></i></li>
+		<li>
+			<input class="sms" type="text" name="" placeholder="请输入短信验证码">
+			<span class="getSms">获取验证码</span>
+			<i></i>
+		</li>
+		<li style="height:29px"></li>
+		<li class="loading">登录</li>
+	</ul>
+	<div class="user-in-other">
+		<span>使用第三方账号登录:</span>
+		<a href="#" class="weix-in"></a>
+		<a href="#" class="qq-in"></a>
+	</div>
+	<p class="redtit"><img src="img/alert.png" alt="" >必要不会以任何理由要求您转账汇款，谨防诈骗。</p>
+</div>	
+	<!-- footer -->
+<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" style="outline: 1px solid rgb(0,0,0)"></script>
+<script class="publicJs"></script>
+<script>
+	$(function(){
+		$(".footer").load("public-html/publicFooter.html")
+		$("style").load("css/public.css")
+		$(".publicJs").load("js/public.js")
+		//切换登录方式
+		$(".sms-in").click(function(){
+			$(".user-in").css({
+				display:"none"
+			})
+			$(".user-in-sms").css({
+				display:"block"
+			})
+		})
+		$(".pw-in").click(
+			function(){
+			$(".user-in").css({
+				display:"block"
+			})
+			$(".user-in-sms").css({
+				display:"none"
+			})
+		})
+		// 自动登录
+		let	cookie = false;
+		$(".user-auto").find("span").toggle(
+			function(){
+				cookie = true;
+				console.log("选中保存cookie")
+				$(this).html("<b></b>请勿在公用电脑上勾选此选项")
+				$(this).find("b").css({
+					background:"url(img/jl-3.png) no-repeat -20px -80px"
+				})
+			}
+			,function(){
+				cookie = false;
+				console.log("取消保存cookie")
+				$(this).html("<b></b>下次自动登录")
+				$(this).find("b").css({
+					background:"url(img/jl-2.png) no-repeat 0 -80px"
+				})
+			}	
+		)
+
+		//正则验证账户
+		let name = false;
+		$("#username").focusout(function(){
+			let username = $("#username").val();
+			if(username==null){
+				$("#username+i").text("请输入手机号")
+			}
+			let reg = /^1\d{10}$/;
+			if(reg.test(username)!=true){
+				$("#username+i").css({
+					display:"block"
+				});
+				$("#username").css({
+			    	border: "1px solid #F49F26"
+				})
+				$("#username+i").text("手机号格式不正确")
+			}else{
+				$("#username+i").css({
+					display:"none"
+				})
+				$("#username").css({
+			    	border: "1px solid #e8e8e8"
+				})
+				name = true;
+			}
+		})
+
+		//正则验证账户密码
+		let password = false;
+		$("#userpw").focusout(function(){
+			let userpw = $("#userpw").val();
+			if(userpw.length==0){
+				$("#userpw+i").css({
+					display:"block"
+				});
+				$("#userpw+i").text("请输入密码")
+				$("#userpw").css({
+			    	border: "1px solid #F49F26"
+				})
+			}
+			let reg = /^(\w|[\.\*\@\!\#]){6,32}$/;
+			if(reg.test(userpw)!=true){
+				$("#userpw+i").css({
+					display:"block"
+				});
+				$("#userpw").css({
+			    	border: "1px solid #F49F26"
+				})
+				$("#userpw+i").text("请输入6-32位字符，需字母数字符号两种以上组合");
+			}else{
+				$("#userpw+i").css({
+					display:"none"
+				});
+				$("#userpw").css({
+			    	border: "1px solid #e8e8e8"
+				})
+				password = true;
+			}
+		})
+		
+		//ajax请求
+		$(".loading").click(function(){
+			if(name == true&&password == true){
+				$.post("logo.php",{name:$("#username").val(),password:$("#userpw").val()},function(data){
+					console.log(data);
+					if(data==1){
+						if(cookie==true){
+							let userJSON = {
+							user:"",
+								userpw:""
+							};
+							let username = $("#username").val();
+							let userpw = $("#userpw").val();
+							userJSON.user = username;
+							userJSON.userpw = userpw;
+
+							let str = JSON.stringify(userJSON);//把JSON数据转换为字符串
+							console.log(str);
+							setCookie("userinfo",str,1);
+						}	
+						location.href = "http://localhost/biyao/index.html?"+ "username="+$("#username").val();
+					}else if(data==0){
+						alert("账号或密码错误");
+					}
+				})
+			}else{
+				alert("请查看信息是否填写正确")
+			}	
+		})
+		// 保存cookie
+		function setCookie(key,value,day){//设置cookie
+		var myDate = new Date();
+		myDate.setDate(myDate.getDate()+day);
+		document.cookie = key+"="+escape(value)+"; expires="+myDate.toGMTString();
+		}
+
+		function getCookie(key){//获取cookie
+				var str = unescape(document.cookie);
+				
+				//1、分割成数组
+				var arr=str.split("; ");
+				
+				//2、循环数组，查找键，并得到对应的值
+				for(var i in arr){
+					if(arr[i].indexOf(key+"=")==0){
+						return arr[i].substring((key+"=").length);
+					}
+				}
+				return null;
+		}
+
+
+	})
+</script>
+</html>

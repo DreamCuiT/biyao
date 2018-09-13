@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>必要 - 买大品牌制造产品</title>
+	<style></style>
+	<link rel="stylesheet" href="css/shopCar.css">
+</head>
+<body>
+	<div class="head-top"></div>
+	<!-- shopcar-title -->
+	<div class="main">
+		<div class="main-title"><span>购物车</span></div>
+	</div>
+	<div class="shopCar-main-top">
+		<ul class="shopCar-main-top-ul">
+			<li>
+				<i class="select"></i><span>全选</span>
+			</li>
+			<li>
+				商品信息
+			</li>
+			<li>
+				单价
+			</li>
+			<li>
+				数量
+			</li>
+			<li>
+				小计
+			</li>
+			<li>
+				操作
+			</li>
+		</ul>
+	</div>
+	<div class="shopCar-main-content">
+		<ul>
+			<li>
+				<i class="select"></i>
+				<span>商家：</span>
+				<b>EMP服饰</b>
+			</li>
+			<li>
+				<div>
+					<i class="select"></i>
+					<img src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
+				</div>
+			
+				<ul>
+					<li>净色小翻领拉链款短风衣JJK18618</li>
+					<li>颜色：<span>黑色</span></li>
+					<li>尺寸：<span>48</span></li>
+				</ul>
+			
+				<ul class="shopCar-main-content-right">
+					<li>￥<span>599</span></li>
+					<li><span>-</span><span>1</span><span>+</span></li>
+					<li>￥<span>599</span></li>
+					<li><span></span></li>
+				</ul>
+			</li>
+			<li>
+				<div>
+					<i class="select"></i>
+					全选
+					<span>删除</span>
+				</div>
+				<ul>
+					<li>商品总件数<span>1</span> 件</li>
+					<li>商品总价: <i>￥</i><span>599</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="shopCar-main-goBuy">
+		<ul>
+			<li>继续购物</li>
+			<li>合计：<i>￥</i><span>599</span><span>结算</span></li>
+		</ul>
+	</div>
+	<div class = "public-foot"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" style="outline: 1px solid rgb(0,0,0)"></script>
+<script class="publicJs"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".head-top").load("public-html/publicTop.html")
+		$(".public-foot").load("public-html/publicFooter.html")
+		$(".rightaside").load("public-html/asideRight.html");
+		$("style").load("css/public.css")
+		$(".publicJs").load("js/public.js")
+	})
+</script>
+</html>

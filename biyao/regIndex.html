@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>必要 - 买大品牌制造产品</title>
+	<link rel="stylesheet" href="css/regIndex.css" type="text/css">
+	<style></style>
+</head>
+<body>
+		<!-- header -->
+<div class = "logoHeader">
+	<div class="logoHead-Top">
+		<div>
+			<a href="index.html"  class="logo"></a>
+			<p class="logo-top-right">
+				欢迎来到必要，请
+				<span><a href="logoIndex.html">登录</a></span>|
+				<span>注册</span>
+			</p>
+		</div>
+	</div>
+</div>	
+	<!-- reg -->
+<div class="form-box">
+	<h4 class="form-top">
+		<b></b>新用户注册
+	</h4>
+	<ul class="user-in user-in-sms">
+		<li>
+			<input id="username" type="text" name="" placeholder="请输入手机号">
+			<i>请输入手机号</i>
+		</li>
+		<li>
+			<input class="sms" type="text" name="" placeholder="请输入短信验证码">
+			<span class="getSms">获取验证码</span>
+			<i></i>
+		</li>
+		<li><input id="userpw" type="text" name="" placeholder="请输入6-32位登录密码"><i>请输入6-32位字符，需字母数字符号两种以上组合</i></li>
+		<li><input id="pwagin" type="text" name="" placeholder="请再次输入登录密码"><i>
+		请再次输入登录密码
+		</i></li>
+		<li class="protocols"><span><b></b>我以阅读并同意</span><a href="#">《必要服务协议》</a></li>
+		<li style="height:12px;margin-top:10px"></li>
+		<li class="loading">注册</li>
+	</ul>
+</div>	
+	<!-- footer -->
+<div class="footer"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" style="outline: 1px solid rgb(0,0,0)"></script>
+<script class="publicJs"></script>
+<script>
+	let read = false;
+	$(function(){
+		$(".footer").load("public-html/publicFooter.html")
+		$("style").load("css/public.css")
+		$(".publicJs").load("js/public.js")
+
+		$(".protocols").toggle(function(){
+			$(".protocols>span").find("b").css({
+				background:"url(img/jl-2.png) no-repeat -20px -80px"
+			});
+			read = true;
+		},function(){
+			$(".protocols>span").find("b").css({
+				background:"url(img/jl-2.png) no-repeat 0px -80px"
+			})
+			 read = false;
+		})
+		//正则验证账户
+		let name = false;
+		$("#username").focusout(function(){
+			let username = $("#username").val();
+			if(username==null){
+				$("#username+i").text("请输入手机号")
+			}
+			let reg = /^1\d{10}$/;
+			if(reg.test(username)!=true){
+				$("#username+i").css({
+					display:"block"
+				});
+				$("#username").css({
+			    	border: "1px solid #F49F26"
+				})
+				$("#username+i").text("手机号格式不正确")
+			}else{
+				$("#username+i").css({
+					display:"none"
+				})
+				$("#username").css({
+			    	border: "1px solid #e8e8e8"
+				})
+				name = true;
+			}
+		})
+
+		//正则验证账户密码
+		let password = false;
+		$("#userpw").focusout(function(){
+			let userpw = $("#userpw").val();
+			if(userpw==null){
+				$("#userpw+i").text("请输入密码")
+			}
+			let reg = /^(\w|[\.\*\@\!\#]){6,32}$/;
+			if(reg.test(userpw)!=true){
+				$("#userpw+i").css({
+					display:"block"
+				});
+				$("#userpw").css({
+			    	border: "1px solid #F49F26"
+				})
+				$("#userpw+i").text("请输入6-32位字符，需字母数字符号两种以上组合");
+			}else{
+				$("#userpw+i").css({
+					display:"none"
+				});
+				$("#userpw").css({
+			    	border: "1px solid #e8e8e8"
+				})
+				password = true;
+			}
+		})
+
+		//验证账户密码重新输入正确
+		let passwordagin = false;
+		$("#pwagin").focusout(function(){
+			let pwagin = $("#pwagin").val();
+			let pw = $("#userpw").val();
+			if(pwagin.length==0){
+				$("#pwagin+i").css({
+					display:"block"
+				});
+				$("#pwagin+i").text("请再次输入登录密码")
+				$("#pwagin").css({
+			    	border: "1px solid #F49F26"
+				})
+			}else if(pw!=pwagin){
+				$("#pwagin+i").css({
+					display:"block"
+				});
+				$("#pwagin").css({
+			    	border: "1px solid #F49F26"
+				})
+				$("#pwagin+i").text("两次密码不一致，请重新输入");
+			}else{
+				$("#pwagin+i").css({
+					display:"none"
+				});
+				$("#pwagin").css({
+			    	border: "1px solid #e8e8e8"
+				})
+				passwordagin = true;
+			}
+		})
+		
+		//ajax请求
+		$(".loading").click(function(){
+			if(name == true&&password == true&&passwordagin == true&&read == true){
+				$.get("reg.php",{name:$("#username").val(),password:$("#userpw").val()},function(data){
+					if(data==0){
+						location.href = "http://localhost/biyao/index.html?"+ "username="+$("#username").val();
+					}else{
+						alert(data);
+					}
+				})
+			}else{
+				alert("请查看信息是否填写正确")
+			}			
+		})
+	})
+</script>
+</body>
+</html>
