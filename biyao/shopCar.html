@@ -86,19 +86,26 @@
 				<div>
 					<i class="selectAll"></i>
 					全选
-					<span>删除</span>
+					<span class="delectGoods">删除</span>
 				</div>
 				<ul>
-					<li>商品总件数 <span class="goods-data">1</span> 件</li>
-					<li>商品总价  :<i class="goods-data">￥</i><span class="goods-data">599</span></li>
+					<li>商品总件数 <span class="goods-data">0</span> 件</li>
+					<li>商品总价  :<i class="goods-data">￥</i><span class="goods-data">0</span></li>
 				</ul>
 		</div>
 	</div>
 	<div class="shopCar-main-goBuy">
 		<ul>
-			<li>继续购物</li>
-			<li>合计：<i class="goods-data sum">￥</i><span class="goods-data sum">599</span><span>结算</span></li>
+			<li><a href="index.html">继续购物</a></li>
+			<li>合计：<i class="goods-data sum">￥</i><span class="goods-data sum">0</span><span>结算</span></li>
 		</ul>
+	</div>
+	<div class="mok">
+		<div class="center-box">
+			<h2>提示</h2>
+			<p>您是否要从购物车中移除所选的商品？</p>
+			<p class="yesOrno"><span class="yes">确定</span><span class="no">取消</span></p>
+		</div>
 	</div>
 	<div class = "public-foot"></div>
 </body>
@@ -134,6 +141,10 @@
 				offto = false;
 			}
 		})
+		//删除商品
+		// $(".delectGoods").click(function(){
+
+		// })
 		//单选按钮
 		// let btn =  document.getElementsByClassName("select");
 		// for(let i=0;i<btn.length;i++){

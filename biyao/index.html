@@ -1927,16 +1927,20 @@
 					// kk = cookieData[1];
 					userinfo = JSON.parse(kk);//把从cookie获取的字符串转换为JSON对象
 					console.log(kk);
-					$("#loginBtn").text(function(){
-					return "欢迎: "+userinfo.user;
-						});
-
 					$("#registBtn").css({
 							display:"none"
 							})
-					}else{
-						$(".loading").click(function(){
-							})
+					$("#loginBtn").text(function(){
+						return "欢迎: "+userinfo.user;
+						});
+					
+					}else if(cookieData[0]=="vipName"){
+						kk = unescape(cookieData[1]);
+						vipName = JSON.parse(kk);//把从cookie获取的字符串转换为JSON对象
+						console.log(kk);
+						$("#loginBtn").text(function(){
+							return "欢迎: "+vipName;
+						})
 					}
 				}
 			}

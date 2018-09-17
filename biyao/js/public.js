@@ -120,34 +120,81 @@
 		
 		
 		//获取购物车信息
+		
 		let vipName = getCookie("vipName");
-		$.get("php/getShoppingCart.php",{vipName:vipName},function(data){
-			let arr  = praseJson(data);
-			$(".goods-list").append("<li class='ul-li-2'><div><i class='select'></i><img class='goods-img' src='"+arr[0].goodsImg+"' alt=' width='100px' height='100px'></div><ul><li>"+arr[0].goodsName+"</li><li>颜色：<span>黑色</span></li><li>尺寸：<span>48</span></li></ul><ul class='shopCar-main-content-right'><li>￥<span class='goods-one-money'>"+arr[0].goodsPrice+"</span></li><li><span class='miu goods-minus'></span><span class='num goods-number'>1</span><span class='add goods-add'></span></li><li>￥<span class='goods-maney'>"+arr[0].goodsPrice+"</span></li><li><span></span></li></ul></li>")
-			//添加商品数量
-			$(".goods-minus").click(function(){
-				let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find(".goods-one-money").text());
-				let num = parseInt($(this).nextUntil().eq(0).text());
-				// let sum = parseInt($(this).nextUntil(".goods-maney").text());	
-				num--;
-				if(num<=0){
-					$(this).next().text("0");
-					$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text("0");
-				}else{
-					$(this).next().html(num);
-					$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(oneMoney*num);
-				}
-				
+			$.get("php/getShoppingCart.php",{vipName:vipName},function(data){
+				let arr  = praseJson(data);
+				console.log(arr);
+				$(".goods-list").append("<li class='ul-li-2'><div><i class='select'></i><img class='goods-img' src='"+arr[0].goodsImg+"' alt=' width='100px' height='100px'></div><ul><li>"+arr[0].goodsName+"</li><li>颜色：<span>黑色</span></li><li>尺寸：<span>48</span></li></ul><ul class='shopCar-main-content-right'><li>￥<span class='goods-one-money'>"+arr[0].goodsPrice+"</span></li><li><span class='miu goods-minus'></span><span class='num goods-number'>1</span><span class='add goods-add'></span></li><li>￥<span class='goods-maney'>"+arr[0].goodsPrice+"</span></li><li><span class='delectGoods'></span></li></ul></li>")
+				priceAll();
+				//添加商品数量
+				$(".goods-minus").click(function(){
+					let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find(".goods-one-money").text());
+					let num = parseInt($(this).nextUntil().eq(0).text());
+					// let sum = parseInt($(this).nextUntil(".goods-maney").text());	
+					num--;
+					if(num<=0){
+						$(this).next().text("0");
+						$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text("0");
+						$(".mok").css({
+							display:"block"
+						})
+						$(".center-box>p:first").text("不能再减了，再减就没了")
+					}else{
+						$(this).next().html(num);
+						$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(oneMoney*num);
+					}
+					// //总价,商品件数
+					priceAll();
+				})
+				$(".goods-add").click(function(){
+					let num = parseInt($(this).prevAll(".goods-number").text());
+					let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find("span").text());
+					// let sum = parseInt($(".goods-maney").text());
+					num++;
+					$(this).parentsUntil().eq(1).find("li").eq(1).find(".goods-number").html(num);	
+					$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(num*oneMoney);
+					//总价
+					priceAll();
+				})
+
+				//删除商品
+				$(".delectGoods").click(function(){
+					$(".mok").css({
+						display:"block"
+					})
+					$(".center-box>p:first").text("不能再减了，再减就没了")
+				})
+				$(".yes").click(function(){
+					$(".mok").css({
+						display:"none"
+					})
+					$(".center-box>p:first").text("不能再减了，再减就没了")
+					$.get("php/deleteGoods.php",{vipName:vipName,goodsId:arr[0].goodsId},function(data){
+						console.log(data);
+						if(data==1){
+							// $(".goods-list").remove()
+						}
+					})
+				})
+				$(".no").click(function(){
+					$(".mok").css({
+						display:"none"
+					})
+					$(".center-box>p:first").text("不能再减了，再减就没了")
+				})
+			})	
+		function priceAll(){
+			let sum = 0;
+			let count = 0;
+			$(".goods-maney").each(function(i){
+				sum += parseInt($(".goods-maney").eq(i).text());
+				count += parseInt($(".goods-number").eq(i).text());
+				$(".goods-data").eq(2).text(sum)
+				$(".goods-data").eq(0).text(count)
+				$(".sum").eq(1).text(parseInt($(".goods-data").eq(2).text()))
 			})
-			$(".goods-add").click(function(){
-				let num = parseInt($(this).prevAll(".goods-number").text());
-				let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find("span").text());
-				// let sum = parseInt($(".goods-maney").text());
-				num++;
-				$(this).parentsUntil().eq(1).find("li").eq(1).find(".goods-number").html(num);	
-				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(num*oneMoney);
-			})
-		})	
+		}
 
 		function getCookie(key){//获取cookie
 					var str = unescape(document.cookie);
