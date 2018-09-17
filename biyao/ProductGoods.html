@@ -15,7 +15,7 @@
 </div>
 <!-- goods-mgs -->
 <div class="goods-mgs">
-	<div class="goods-left">
+	<!-- <div class="goods-left">
 		<div class="gooda-img">
 			<p>
 				<img src="goods-img/1.jpg" alt="">
@@ -68,7 +68,9 @@
 					<li>
 						<span>颜色</span>
 						<div>
-							<ul class="color-size">
+							<ul class="color">
+								<li>黑色<i></i></li>
+								<li>黑色<i></i></li>
 								<li>黑色<i></i></li>
 							</ul>
 						</div>
@@ -88,9 +90,8 @@
 				</ul>
 			</li>
 			<li class="goods-stockSize">
-				<span></span>
+				<span id="mok"><img src="goods-img/size.jpg" alt=""></span>
 				查看尺码对照表
-				<img src="goods-img/size.jpg" alt="">
 			</li>
 			<li class="goods-num">
 				<span>数量</span>
@@ -106,7 +107,7 @@
 			<p class="addShopCar">加入购物车</p>
 			<p class="ShopCar-not">加入购物车</p>
 		</div>
-	</div>
+	</div> -->
 </div>
 <!--  Produ商品介绍 -->
 <div class="goods-produ">
@@ -310,6 +311,132 @@
 		$(".rightaside").load("public-html/asideRight.html");
 		$("style").load("css/public.css")
 		$(".publicJs").load("js/public.js")
+		//获取URL地址字符串
+		let str =  location.search.slice(1);
+		//获取商品信息的ajdx请求
+		$.get("php/getGoodsInfo.php",{goodsId:str},function(data){
+			// console.log(data);
+			let arr  = praseJson(data);
+			console.log(arr);
+			console.log(arr.goodsImg);
+			$(".goods-mgs").append("<div class='goods-left'><div class='gooda-img'><p><img src=\""+arr.goodsImg+"\" alt=''></p><ul><li><img src=\""+arr.goodsImg+"\" alt=''></li><li><img src=\""+arr.goodsImg+"\" alt=''></li><li><img src=\""+arr.goodsImg+"\" alt=''></li><li><img src=\""+arr.goodsImg+"\" alt=\"></li><li><img src=\""+arr.goodsImg+"\" alt=''></li><li><img src=\""+arr.goodsImg+"\" alt=''></li></ul></div><ul class='goods-left-title'><li><span>七天无忧退货</span><div class = 'goods-img-mgs'><i></i>根据国家七天无理由退货规范，为您办理退货退款，具体退货政策见商品详情页。</div></li><li><span>七天无忧退货</span><div class = 'goods-img-mgs'><i></i>根据国家七天无理由退货规范，为您办理退货退款，具体退货政策见商品详情页。</div></li><li><span>七天无忧退货</span><div class = 'goods-img-mgs'><i></i>根据国家七天无理由退货规范，为您办理退货退款，具体退货政策见商品详情页。</div></li><li><span>七天无忧退货</span><div class = 'goods-img-mgs'><i></i>根据国家七天无理由退货规范，为您办理退货退款，具体退货政策见商品详情页。</div></li></ul></div><div class='goods-right'><div class='goods-right-goodstitle'><h1>"+arr.goodsName+"</h1><p>连帽款撞色防水拉链设计，穿着舒适有型，长款设计更具年轻感，百搭好穿</p><span>Hugo Boss制造商直供</span></div><ul class='goods-main'><li class='gooda-maney'><span>售价</span><div><span>￥<i>"+arr.goodsPrice+"</i></span><span>生产周期：<i>7</i>天</span></div></li><li class='goods-size'><ul><li><span>颜色</span><div><ul class='color'><li>黑色<i></i></li><li>黑色<i></i></li><li>黑色<i></i></li></ul></div></li><li><span>尺寸</span><div><ul class='color-size'><li>48 <i></i></li><li>50 <i></i></li><li>52 <i></i></li><li>54 <i></i></li><li>56 <i></i></li></ul></div></li></ul></li><li class='goods-stockSize'><span id='mok'><img src='goods-img/size.jpg' alt=''></span>查看尺码对照表</li><li class='goods-num'><span>数量</span><p><span class='goods-minus'>-</span><span class='goods-number'>1</span><span class='goods-add'>+</span></p></li></ul><div class='goods-right-bottom'><p class='buy'>立即购买</p><p class='addShopCar'>加入购物车</p><p class='ShopCar-not'>加入购物车</p></div></div>")
+
+			//hover
+			$(".goods-left-title>li").hover(function(){
+				$(this).find("div").css({
+					display:"block"
+				})
+			},function(){
+				$(this).find("div").css({
+					display:"none"
+				})
+			})
+		//cclick
+			$(".goods-produ-title-bottom").parent().click(function(){
+				$(".goods-produ-title>ul").find(">li").css({
+					background:"#EEECEF"
+				})
+				$(".goods-produ-title>ul").find("li i").css({
+					display:"none"
+				})
+				$(this).css({
+					background: "#fff"
+				})
+				$(this).find("i").css({
+					display:"block"
+				})
+			})
+			$(".goods-li1").click(function(){
+				$(".goods-produ-mgs-right").css({
+					display:"block"
+				})
+			})
+			$(".goods-li2").click(function(){
+				$(".goods-produ-mgs-right").css({
+					display:"none"
+				})
+			})
+			//color
+			$(".color>li").click(function(){
+				$(".color>li").css({
+					border:"1px solid #ccc"
+				})
+				$(".color>li>i").css({
+					display:"none"
+				})
+				$(this).find("i").css({
+					display:"block"
+				})
+				$(this).css({
+					    border: "1px solid #523669"
+				})
+			})
+			// size
+			$(".color-size>li").click(function(){
+				$(".color-size>li").css({
+					border:"1px solid #ccc"
+				})
+				$(".color-size>li>i").css({
+					display:"none"
+				})
+				$(this).find("i").css({
+					display:"block"
+				})
+				$(this).css({
+					    border: "1px solid #523669"
+				})
+		})
+		//shopCar
+		$(".addShopCar").click(function(){
+			let vipName = getCookie("vipName");
+			if(vipName.indexOf("登录")>-1){
+				location.href = "logoIndex.html"
+			}else{
+				let goodsId = location.search.slice(1);
+				let goodsCount = $(".goods-number").text();
+				
+				$.get("php/addShoppingCart.php",{vipName:vipName,goodsId:goodsId,goodsCount:goodsCount},function(data){
+					if(data==1){
+						location.href = "shopCar.html"	
+					}else{
+						alert("加入购物车失败")
+					}
+				})
+			}
+		})
+		//goods-minus
+		$(".goods-minus").click(function(){
+			let num = parseInt($(".goods-number").text());
+			num--;
+			if(num<=0){
+				$(".goods-number").text("0");
+			}else{
+				$(".goods-number").text(num);
+			}	
+		})
+		$(".goods-add").click(function(){
+			let num = parseInt($(".goods-number").text());
+			num++;
+			$(".goods-number").text(num);	
+		})
+		//size-table
+		$(".goods-stockSize").click(function(event){
+			let evt = event?event:window.event;
+			$("#mok").css({
+				display:"block"
+			})
+			evt.stopPropagation();
+		})
+		// $("#mok").triggerHandler("click")
+		$("#mok").click(function(event){
+			let evt = event?event:window.event;
+			$(this).css({
+				display:"none"
+			})
+			evt.stopPropagation();
+		})
+		})
+
 		//滚动条判断是否固定定位nav	
 		$(window).scroll(function(){
 			if($(".goods-produ").offset().top<=$(document).scrollTop()){
@@ -327,77 +454,13 @@
 				})
 			}
 		})	
-		//hover
-		$(".goods-left-title>li").hover(function(){
-			$(this).find("div").css({
-				display:"block"
-			})
-		},function(){
-			$(this).find("div").css({
-				display:"none"
-			})
-		})
-		//cclick
-		$(".goods-produ-title-bottom").parent().click(function(){
-			$(".goods-produ-title>ul").find(">li").css({
-				background:"#EEECEF"
-			})
-			$(".goods-produ-title>ul").find("li i").css({
-				display:"none"
-			})
-			$(this).css({
-				background: "#fff"
-			})
-			$(this).find("i").css({
-				display:"block"
-			})
-		})
-		$(".goods-li1").click(function(){
-			$(".goods-produ-mgs-right").css({
-				display:"block"
-			})
-		})
-		$(".goods-li2").click(function(){
-			$(".goods-produ-mgs-right").css({
-				display:"none"
-			})
-		})
-		// size-color
-		$(".color-size>li").click(function(){
-			$(".color-size>li").css({
-				border:"1px solid #ccc"
-			})
-			$(".color-size>li>i").css({
-				display:"none"
-			})
-			$(this).find("i").css({
-				display:"block"
-			})
-			$(this).css({
-				    border: "1px solid #523669"
-			})
-		})
-		//shopCar
-		$(".addShopCar").click(function(){
-			location.href = "http://localhost/biyao/shopCar.html"
-		})
-		//goods-minus
-		$(".goods-minus").click(function(){
-			let num = parseInt($(".goods-number").text());
-			num--;
-			if(num<=0){
-				$(".goods-number").text("0");
-			}else{
-				$(".goods-number").text(num);
-			}	
-		})
-		$(".goods-add").click(function(){
-			let num = parseInt($(".goods-number").text());
-			num++;
-			$(".goods-number").text(num);	
-		})
+		
 	 })
+function praseJson(str){
+			let concat = '\{\"goodsList\"\:'+str+'\}';//字符转换JSON对象的格式'{"键名":"键值"}'
+			let goodsJSON = JSON.parse(concat);
+			// console.log(goodsJSON);
+			return goodsJSON.goodsList;//返回所有商品详情数组
+		}
 </script>
 </html>
-
-<!-- specs-active.png -->

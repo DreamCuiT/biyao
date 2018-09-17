@@ -109,7 +109,7 @@ a{
 .shopCar-main-content>ul>li{
 /*	float:left;*/
 }
-.shopCar-main-content>ul>li:first-child{
+.goods-title{
 	line-height: 35px;
     background-color: #EEE;
 }
@@ -118,7 +118,7 @@ a{
     overflow: hidden;
     border-bottom: 1px dotted #ccc;
 }
-.shopCar-main-content>ul>li:first-child>b{
+.goods-title>b{
 	color:#333;
 	font-weight: normal;
 }
@@ -169,7 +169,7 @@ a{
 .miu{
 	border: 1px solid #ccc;
 	width:28px;
-	height:32px;
+	height:30px;
 	background:url(../shopCar-img/commonSprite.png) no-repeat 5px -40px;
 }
 .miu:hover{
@@ -179,13 +179,13 @@ a{
 	border-top:1px solid #ccc;
 	border-bottom:1px solid #ccc;
 	width:50px;
-	height:32px;
+	height:30px;
 	color:#523669;
 }
 .add{
 	border: 1px solid #ccc;
 	width:28px;
-	height:32px;
+	height:30px;
 	background:url(../shopCar-img/commonSprite.png) no-repeat -16px -40px;	
 }
 .add:hover{
@@ -202,33 +202,33 @@ a{
 	margin:auto;
 	background: url(../shopCar-img/a_delete.png) no-repeat -10px -32px;
 }
-.shopCar-main-content>ul>li:last-child{
+.goods-menu{
 	height:32px;
 	padding:10px 0;
 	background: #fff;
 }
-.shopCar-main-content>ul>li:last-child>div:first-child{
+.goods-menu>div:first-child{
 	float:left;
 	line-height:32px;
 	color: rgb(51, 51, 51);
 }
-.shopCar-main-content>ul>li:last-child>div:first-child>span{
+.goods-menu>div:first-child>span{
 	
 	color: #07a6df;
 	margin-left:10px;
 }
-.shopCar-main-content>ul>li:last-child>ul{
+.goods-menu>ul{
 	float:right;
 	line-height:32px;	
 }
-.shopCar-main-content>ul>li:last-child>ul>li{
+.goods-menu>ul>li{
 	display: inline-block;	
 	color: #666;
 	margin-right:30px;
 	line-height:30px;
 	font-size:14px;
 }
-.shopCar-main-content>ul>li:last-child>ul>li:last-child{
+.goods-menu>ul>li:last-child{
 	margin-right:50px;
 }
 .goods-data{

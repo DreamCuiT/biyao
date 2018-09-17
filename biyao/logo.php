@@ -25,7 +25,6 @@
 		echo 0;
 	}
 
-	//关闭连接
-	// mysql_close($con);
-	// echo mysql_num_rows($num);
+	// 关闭连接
+	mysql_close($con);
 ?>

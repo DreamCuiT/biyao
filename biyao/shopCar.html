@@ -35,16 +35,16 @@
 		</ul>
 	</div>
 	<div class="shopCar-main-content">
-		<ul>
-			<li>
-				<i class="select"></i>
-				<span>商家：</span>
-				<b>EMP服饰</b>
-			</li>
-			<li class="ul-li-2">
+		<div class="goods-title">
+			<i class="select"></i>
+			<span>商家：</span>
+			<b>EMP服饰</b>
+		</div>
+		<ul class="goods-list">
+			<!-- <li class="ul-li-2">
 				<div>
 					<i class="select"></i>
-					<img src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
+					<img class="goods-img" src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
 				</div>
 				<ul>
 					<li>净色小翻领拉链款短风衣JJK18618</li>
@@ -53,11 +53,11 @@
 				</ul>
 			
 				<ul class="shopCar-main-content-right">
-					<li>￥<span>599</span></li>
+					<li>￥<span class="goods-one-money">599</span></li>
 					<li>
-						<span class="miu"></span><span class="num">1</span><span class="add"></span>
+						<span class="miu goods-minus"></span><span class="num goods-number">1</span><span class="add goods-add"></span>
 					</li>
-					<li>￥<span>599</span></li>
+					<li>￥<span class="goods-maney">599</span></li>
 					<li><span></span></li>
 				</ul>
 			</li>
@@ -67,21 +67,22 @@
 					<img src="shopCar-img/1.jpg" alt="" width="100px" height="100px">
 				</div>
 				<ul>
-					<li>净色小翻领拉链款短风衣JJK18618</li>
+					<li class="goods-news">净色小翻领拉链款短风衣JJK18618</li>
 					<li>颜色：<span>黑色</span></li>
 					<li>尺寸：<span>48</span></li>
 				</ul>
 			
 				<ul class="shopCar-main-content-right">
-					<li>￥<span>599</span></li>
+					<li>￥<span class="goods-one-money">599</span></li>
 					<li>
-						<span class="miu"></span><span class="num">1</span><span class="add"></span>
+						<span class="miu goods-minus"></span><span class="num goods-number">1</span><span class="add goods-add"></span>
 					</li>
-					<li>￥<span>599</span></li>
+					<li>￥<span class="goods-maney">599</span></li>
 					<li><span></span></li>
 				</ul>
-			</li>
-			<li>
+			</li> -->
+		</ul>
+		<div class="goods-menu">
 				<div>
 					<i class="selectAll"></i>
 					全选
@@ -91,8 +92,7 @@
 					<li>商品总件数 <span class="goods-data">1</span> 件</li>
 					<li>商品总价  :<i class="goods-data">￥</i><span class="goods-data">599</span></li>
 				</ul>
-			</li>
-		</ul>
+		</div>
 	</div>
 	<div class="shopCar-main-goBuy">
 		<ul>
@@ -135,57 +135,59 @@
 			}
 		})
 		//单选按钮
-		let btn =  document.getElementsByClassName("select");
-		for(let i=0;i<btn.length;i++){
-			btn[i].setAttribute("off","false");
-		}
-		$(".select").click(function(){
-			if($(this).attr("off")=="false"){
-				$(this).css({//false选中按钮
-					"background-position":"-20px -80px"
-				})
-				this.setAttribute("off","true");
-			}else{
-				$(this).css({
-					"background-position":"0px -80px"
-				})
-				this.setAttribute("off","false");
-			}
-			for(let i=0;i<$(".select").length;i++){
-				let off = $(".select")[i][off];
-				if(off=="false"){
-					$(".selectAll").css({
-						"background-position":"-20px -80px"
-					})
-				}else{
-					$(".selectAll").css({
-						"background-position":"0px -80px"
-					})
-				}
-			}
-			// if($(".select").attr("off")=="false"){
-			// 	$(".selectAll").css({
-			// 		"background-position":"-20px -80px"
-			// 	})
-			// }else{
-			// 	$(".selectAll").css({
-			// 		"background-position":"0px -80px"
-			// 	})
-			// }
-		})
+		// let btn =  document.getElementsByClassName("select");
+		// for(let i=0;i<btn.length;i++){
+		// 	btn[i].setAttribute("off","false");
+		// }
 		// $(".select").click(function(){
-		// 	if(offto == false){
-		// 		$(this).css({
+		// 	if($(this).attr("off")=="false"){
+		// 		$(this).css({//false选中按钮
 		// 			"background-position":"-20px -80px"
 		// 		})
-		// 		offto = true;
+		// 		this.setAttribute("off","true");
 		// 	}else{
 		// 		$(this).css({
 		// 			"background-position":"0px -80px"
 		// 		})
-		// 		offto = false;
+		// 		this.setAttribute("off","false");
 		// 	}
+		// 	for(let i=0;i<$(".select").length;i++){
+		// 		let off = $(".select")[i][off];
+		// 		if(off=="false"){
+		// 			$(".selectAll").css({
+		// 				"background-position":"-20px -80px"
+		// 			})
+		// 		}else{
+		// 			$(".selectAll").css({
+		// 				"background-position":"0px -80px"
+		// 			})
+		// 		}
+		// 	}
+			
 		// })
+		//添加商品数量
+		$(".goods-minus").click(function(){
+			let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find(".goods-one-money").text());
+			let num = parseInt($(this).nextUntil().eq(0).text());
+			// let sum = parseInt($(this).nextUntil(".goods-maney").text());	
+			num--;
+			if(num<=0){
+				$(this).next().text("0");
+				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text("0");
+			}else{
+				$(this).next().html(num);
+				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(oneMoney*num);
+			}
+			
+		})
+		$(".goods-add").click(function(){
+			let num = parseInt($(this).prevAll(".goods-number").text());
+			let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find("span").text());
+			// let sum = parseInt($(".goods-maney").text());
+			num++;
+			$(this).parentsUntil().eq(1).find("li").eq(1).find(".goods-number").html(num);	
+			$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(num*oneMoney);
+		})
 	})
 </script>
 </html>

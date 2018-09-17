@@ -109,3 +109,58 @@
 				display:"none"
 			})
 		})
+
+		//获取用户名
+		$("#loginBtn").text("欢迎："+getCookie("vipName"))
+		
+		//获取购物车信息
+		let vipName = getCookie("vipName");
+		$.get("php/getShoppingCart.php",{vipName:vipName},function(data){
+			let arr  = praseJson(data);
+			$(".goods-list").append("<li class='ul-li-2'><div><i class='select'></i><img class='goods-img' src='"+arr[0].goodsImg+"' alt=' width='100px' height='100px'></div><ul><li>"+arr[0].goodsName+"</li><li>颜色：<span>黑色</span></li><li>尺寸：<span>48</span></li></ul><ul class='shopCar-main-content-right'><li>￥<span class='goods-one-money'>"+arr[0].goodsPrice+"</span></li><li><span class='miu goods-minus'></span><span class='num goods-number'>1</span><span class='add goods-add'></span></li><li>￥<span class='goods-maney'>"+arr[0].goodsPrice+"</span></li><li><span></span></li></ul></li>")
+			//添加商品数量
+			$(".goods-minus").click(function(){
+				let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find(".goods-one-money").text());
+				let num = parseInt($(this).nextUntil().eq(0).text());
+				// let sum = parseInt($(this).nextUntil(".goods-maney").text());	
+				num--;
+				if(num<=0){
+					$(this).next().text("0");
+					$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text("0");
+				}else{
+					$(this).next().html(num);
+					$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(oneMoney*num);
+				}
+				
+			})
+			$(".goods-add").click(function(){
+				let num = parseInt($(this).prevAll(".goods-number").text());
+				let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find("span").text());
+				// let sum = parseInt($(".goods-maney").text());
+				num++;
+				$(this).parentsUntil().eq(1).find("li").eq(1).find(".goods-number").html(num);	
+				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(num*oneMoney);
+			})
+		})	
+
+		function getCookie(key){//获取cookie
+					var str = unescape(document.cookie);
+					
+					//1、分割成数组
+					var arr=str.split("; ");
+					
+					//2、循环数组，查找键，并得到对应的值
+					for(var i in arr){
+						if(arr[i].indexOf(key+"=")==0){
+							return arr[i].substring((key+"=").length);
+						}
+					}
+					return null;
+			}
+
+		function praseJson(str){
+			let concat = '\{\"goodsList\"\:'+str+'\}';//字符转换JSON对象的格式'{"键名":"键值"}'
+			let goodsJSON = JSON.parse(concat);
+			// console.log(goodsJSON);
+			return goodsJSON.goodsList;//返回所有商品详情数组
+		}

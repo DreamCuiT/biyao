@@ -182,13 +182,13 @@
 							console.log(str);
 							setCookie("userinfo",str,1);
 						}	
-						location.href = "http://localhost/biyao/index.html?"+ "username="+$("#username").val();
+						location.href = "index.html?"+ "username="+$("#username").val();
 					}else if(data==0){
 						alert("账号或密码错误");
 					}
 				})
 			}else{
-				alert("请查看信息是否填写正确")
+				alert("账号或密码错误")
 			}	
 		})
 		// 保存cookie

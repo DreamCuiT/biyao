@@ -68,7 +68,7 @@
 	<div class="rightaside"></div>
 	<div class="Blurb">
 		<ul class="cetagory-list">
-			<li><a href="#" target="_blank"><i><img src="shop-img/2.jpg" alt=""></i><dl>
+			<!-- <li><a href="#" target="_blank"><i><img src="shop-img/2.jpg" alt=""></i><dl>
 					<dt>飞鱼游泳镜（可配近视）</dt>
 					<dd>￥99</dd>
 
@@ -158,7 +158,7 @@
 					<dt>AIR.超轻光学镜-B</dt>
 					<dd>￥169</dd>
 				</dl></a>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 	<div class="foot-public"></div>
@@ -173,6 +173,45 @@
 		$(".rightaside").load("public-html/asideRight.html");
 		$(".st").load("css/public.css");
 		$(".publicJs").load("js/public.js");
+
+		$.get("php/getGoodsList.php",function(data){//get方式得到所有商品字符串
+			// console.log(data);
+			// console.log(praseJson(data));
+			let arr  = praseJson(data);
+			console.log(arr);
+			for(let i=0;i<arr.length;i++){
+				$(".cetagory-list").append("<li><a href=\"#\" target=\"_blank\"><i><img src=\""+arr[i].goodsImg+"\" alt=\"\"></i><dl><dt>"+arr[i].goodsName+"</dt><dd>￥"+arr[i].goodsPrice+"</dd></dl></a></li>")
+				$(".cetagory-list>li").each(function(i){
+					$(this).attr("id",arr[i].goodsId)
+					let urlGoods = "ProductGoods.html?"+arr[i].goodsId;
+					$(this).find("a").attr("href",urlGoods)
+				})
+			}
+
+			$("#loginBtn").html("欢迎："+getCookie("vipName"));
+		})
+
+		function praseJson(str){
+			let concat = '\{\"goodsList\"\:'+str+'\}';//字符转换JSON对象的格式'{"键名":"键值"}'
+			let goodsJSON = JSON.parse(concat);
+			// console.log(goodsJSON);
+			return goodsJSON.goodsList;//返回所有商品详情数组
+		}
 	})
+	// $("#loginBtn").html("欢迎："+getCookie("vipName"));
+	// function getCookie(key){//获取cookie
+	// 			var str = unescape(document.cookie);
+				
+	// 			//1、分割成数组
+	// 			var arr=str.split("; ");
+				
+	// 			//2、循环数组，查找键，并得到对应的值
+	// 			for(var i in arr){
+	// 				if(arr[i].indexOf(key+"=")==0){
+	// 					return arr[i].substring((key+"=").length);
+	// 				}
+	// 			}
+	// 			return null;
+	// 	}
 </script>
 </html>
