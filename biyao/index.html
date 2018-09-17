@@ -1897,6 +1897,7 @@
 		}
 		if(str.indexOf("username=")>-1){
 			$("#loginBtn").text(function(){
+				setCookie("vipName",str.slice(10),1);
 				return "欢迎: "+getusername();
 			});
 			$("#loginBtn").click(function(event){
@@ -1942,8 +1943,6 @@
 
 			//从cookie获取到的数据
 			// console.log(userinfo);	
-
-		setCookie("vipName",str.slice(10),1);
 		
 		//轮播图左右span
 		$(".banner").mouseenter(

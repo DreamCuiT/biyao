@@ -165,29 +165,6 @@
 		// 	}
 			
 		// })
-		//添加商品数量
-		$(".goods-minus").click(function(){
-			let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find(".goods-one-money").text());
-			let num = parseInt($(this).nextUntil().eq(0).text());
-			// let sum = parseInt($(this).nextUntil(".goods-maney").text());	
-			num--;
-			if(num<=0){
-				$(this).next().text("0");
-				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text("0");
-			}else{
-				$(this).next().html(num);
-				$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(oneMoney*num);
-			}
-			
-		})
-		$(".goods-add").click(function(){
-			let num = parseInt($(this).prevAll(".goods-number").text());
-			let oneMoney = parseInt($(this).parentsUntil().eq(1).find("li").eq(0).find("span").text());
-			// let sum = parseInt($(".goods-maney").text());
-			num++;
-			$(this).parentsUntil().eq(1).find("li").eq(1).find(".goods-number").html(num);	
-			$(this).parentsUntil().eq(1).find("li").eq(2).find("span").text(num*oneMoney);
-		})
 	})
 </script>
 </html>

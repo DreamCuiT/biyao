@@ -187,8 +187,6 @@
 					$(this).find("a").attr("href",urlGoods)
 				})
 			}
-
-			$("#loginBtn").html("欢迎："+getCookie("vipName"));
 		})
 
 		function praseJson(str){
@@ -198,6 +196,12 @@
 			return goodsJSON.goodsList;//返回所有商品详情数组
 		}
 	})
+
+	// //获取用户名
+	// let str = $("#loginBtn").text();
+	// if(str.indexOf("登录")==-1){
+	// 	$("#loginBtn").text("欢迎："+getCookie("vipName"))
+	// }
 	// $("#loginBtn").html("欢迎："+getCookie("vipName"));
 	// function getCookie(key){//获取cookie
 	// 			var str = unescape(document.cookie);

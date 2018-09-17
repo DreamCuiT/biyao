@@ -388,8 +388,9 @@
 		})
 		//shopCar
 		$(".addShopCar").click(function(){
+			let logotext = $("#loginBtn").text();
 			let vipName = getCookie("vipName");
-			if(vipName.indexOf("登录")>-1){
+			if(logotext.indexOf("登录")>-1){
 				location.href = "logoIndex.html"
 			}else{
 				let goodsId = location.search.slice(1);

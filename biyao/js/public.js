@@ -111,7 +111,13 @@
 		})
 
 		//获取用户名
-		$("#loginBtn").text("欢迎："+getCookie("vipName"))
+		let str = $("#loginBtn").text();
+		if(getCookie("vipName")==null){
+			$("#loginBtn").text("登录")
+		}else{
+			$("#loginBtn").text("欢迎："+getCookie("vipName"))
+		}
+		
 		
 		//获取购物车信息
 		let vipName = getCookie("vipName");
